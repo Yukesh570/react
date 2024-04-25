@@ -1,38 +1,28 @@
-.App {
-  text-align: center;
+body {
+  background-color: #0a7ffc; /* Using a shade of blue (Bootstrap primary color) */
+  color: #d80404; /* Set text color to white for better readability */
+  font-family: Arial, sans-serif; /* Use Arial font with fallback to sans-serif */
+  padding: 20px; /* Add padding to the body content */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Center content with max width */
+.container {
+  max-width: 800px; /* Limit content width to 800 pixels */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px; /* Add padding inside the container */
+  background-color: #950606; /* Set container background to white */
+  border-radius: 8px; /* Add rounded corners to the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect to the container */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Style headings */
+h1,
+h2,
+h3 {
+  color: #007bff; /* Use blue color for headings */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style paragraphs */
+p {
+  line-height: 1.5; /* Set line height for better readability */
 }
