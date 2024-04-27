@@ -1,28 +1,53 @@
 body {
-  background-color: #0a7ffc; /* Using a shade of blue (Bootstrap primary color) */
-  color: #d80404; /* Set text color to white for better readability */
+  background-color: #f0f0f0; /* Set the background color of the body */
+  color: #333333; /* Set the default text color */
   font-family: Arial, sans-serif; /* Use Arial font with fallback to sans-serif */
-  padding: 20px; /* Add padding to the body content */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
 }
 
 /* Center content with max width */
-.container {
+#task-container {
   max-width: 800px; /* Limit content width to 800 pixels */
   margin: 0 auto; /* Center the container horizontally */
   padding: 20px; /* Add padding inside the container */
-  background-color: #950606; /* Set container background to white */
+  background-color: #ffffff; /* Set container background to white */
   border-radius: 8px; /* Add rounded corners to the container */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect to the container */
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 /* Style headings */
 h1,
 h2,
 h3 {
-  color: #007bff; /* Use blue color for headings */
+  color: #12bd67; /* Use blue color for headings */
 }
 
-/* Style paragraphs */
-p {
-  line-height: 1.5; /* Set line height for better readability */
+
+
+#form-wrapper {
+  max-width: 400px; /* Set maximum width for the form wrapper */
+  margin: 50 auto; /* Center the form horizontally */
+  padding: 25px; /* Add padding inside the form wrapper */
+  background-color: #f7f7f7; /* Set background color for the form wrapper */
+  border-radius: 15px; /* Add rounded corners to the form wrapper */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow effect to the form wrapper */
+}
+
+#list-wrapper {
+  max-width: 700px; /* Set maximum width for the form wrapper */
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 5px; /* Add padding inside the form wrapper */
+  background-color: #f7f7f7; /* Set background color for the form wrapper */
+  border-radius: 5px; /* Add rounded corners to the form wrapper */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow effect to the form wrapper */
+}
+.flex-wrapper{
+  display: flex;
+}
+
+.task-wrapper:hover{
+  background-color: rgb(130, 238, 238);
 }
