@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Button from "react-bootstrap/Button";
 import"bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component{
@@ -21,6 +20,9 @@ class App extends React.Component{
       this.handlechange=this.handlechange.bind(this)
       this.handlesubmit=this.handlesubmit.bind(this)
       this.getCookie=this.getCookie.bind(this)
+      this.startdelete=this.startdelete.bind(this)
+      this.startedit=this.startedit.bind(this)
+      this.startstrike=this.startstrike.bind(this)
 
     };
      getCookie(name) {
@@ -70,10 +72,31 @@ class App extends React.Component{
         var csrftoken =this.getCookie('csrftoken')
         var url ='http://127.0.0.1:8000/api/task-create/'
 
-        if(this.state.editing == true){
+        if(this.state.editing === true){
           url =`http://127.0.0.1:8000/api/task-update/${ this.state.activeItem.id}` /*use `(tilt) when indicating a pk or id in the URL */
           this.setState({
             editing:false
+          })
+          fetch(url,{
+            method:'PUT',
+            headers:{
+              'content-type':'application/json',
+              'X-CSRFToken':csrftoken,
+            },
+            body:JSON.stringify(this.state.activeItem)
+          }).then((response) =>{
+            this.fetchTasks()
+            this.setState({
+  
+              activeItem:{
+                id:null,
+                title:'',
+                completed:false,
+      
+              }
+            })
+          }).catch(function(error){
+            console.log("ERROR",error)
           })
         }
 
@@ -108,8 +131,42 @@ class App extends React.Component{
           editing:true,
         })
       }
+      
+      startdelete(task){
+        var csrftoken= this.getCookie('csrftoken')
+        var url =`http://127.0.0.1:8000/api/task-delete/${ task.id}`
 
+        fetch(url,{
+          method:'DElETE',
+          headers:{
+            'content-type':'application/json',
+            'X-CSRFToken':csrftoken,
+          },
+        
+      }).then((respose)=>
+       this.fetchTasks(),
+      )
 
+    }
+      startstrike(task){
+        task.completed=!task.completed
+        console.log("completed",task.completed)
+        var csrftoken= this.getCookie('csrftoken')
+        var url =`http://127.0.0.1:8000/api/task-update/${ task.id}`
+
+        fetch(url,{
+          method:'PUT',
+          headers:{
+            'content-type':'application/json',
+            'X-CSRFToken':csrftoken,
+          },
+          body:JSON.stringify({'completed': task.completed,})
+
+      }).then((respose)=>
+       this.fetchTasks(),
+      )
+       
+    }
   
   render(){
     var tasks =this.state.todolist
@@ -136,14 +193,20 @@ class App extends React.Component{
                 tasks.map(function(task,index){
                   return(
                     <div key={index} className="task-wrapper flex-wrapper" >
-                      <div style={{flex:5} }>
-                      <span>{task.title}</span>
+                      <div onClick={()=>self.startstrike(task)} style={{flex:5} }>
+                        {task.completed===false?(
+                          <span>{task.title}</span>
+                        ):(
+                          <strike>{task.title}</strike>
+                        )}
+                        
+                      
                       </div>
                       <div style={{flex:1}}>
                         <button onClick={()=> self.startedit(task)} className='btn btn-sm btn-outline-info'>edit</button>
                       </div>
                       <div style={{flex:1}}>
-                        <button className='btn btn-sm btn-outline-info'>-</button>
+                        <button  onClick={()=> self.startdelete(task)} className='btn btn-sm btn-outline-info'>-</button>
                       </div>
 
                     </div>
